@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 module ExperienceService
+  # Experience updater service
   class ExperienceUpdater < ApplicationService
     attr_reader :user, :experience, :experience_params
 
     def initialize(user, experience, experience_params)
+      super()
       @user = user
       @experience = experience
       @experience_params = experience_params
@@ -19,7 +21,7 @@ module ExperienceService
         end
         @experience.update!(@experience_params.except(:start_year, :start_month, :end_year, :end_month))
       end
-      format_result(nil, 'Experiencia editada correctamente!', experiences_query)
+      format_result(nil, 'ExperienceUpdated', experiences_query)
     end
 
     private

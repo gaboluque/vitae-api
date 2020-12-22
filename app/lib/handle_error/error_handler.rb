@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module HandleError
+  # Error handler
   module ErrorHandler
     def self.included(clazz)
       clazz.class_eval do
@@ -43,25 +44,25 @@ module HandleError
     end
 
     def record_not_found
-      respond('No se encontró ese registro!', 400)
+      respond('RecordNotFound', 404)
     end
 
     def parameters_missing
-      respond('Hacen falta parámetros para completar la petición!', 400)
+      respond('ParametersMissing', 400)
     end
 
     def user_not_authorized
-      respond('No estas autorizado para hacer esta acción!', 401)
+      respond('UserNotAuthorized', 401)
     end
 
     def route_not_found
-      respond('No existe la acción que estas buscando!', 404)
+      respond('RouteNotFound', 404)
     end
 
     def fatal_error(exception)
       Rails.logger.debug(exception)
       respond(
-        'Hubo un error con la aplicación, si el problema persiste ponte en contacto con nuestro equipo.',
+        'ApplicationError',
         500,
         "#{exception.class} - #{exception.message}"
       )

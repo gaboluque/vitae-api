@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# User Policy
 class UserPolicy < ApplicationPolicy
   def show?
     admin
@@ -23,7 +24,7 @@ class UserPolicy < ApplicationPolicy
 
   def permitted_attributes_for_create
     [:email, :password, :password_confirmation, :admin, {
-      profile_attributes: %i[name phone location gender description birth_date avatar], hub_attributes: %i[id tag]
+      profile_attributes: %i[name phone location gender description birth_date avatar]
     }]
   end
 

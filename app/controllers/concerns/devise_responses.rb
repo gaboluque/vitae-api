@@ -18,7 +18,7 @@ module DeviseResponses
 
   def info_item(type, message)
     {
-      message: message,
+      message: message.gsub(/\s(.)/) { |e| $1.upcase },
       type: type
     }
   end

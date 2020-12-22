@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 module UserService
+  # User destroyer service
   class UserDestroyer < ApplicationService
     attr_reader :user
 
     def initialize(user)
+      super()
       @user = user
     end
 
@@ -12,7 +14,7 @@ module UserService
       ActiveRecord::Base.transaction do
         @user.destroy!
       end
-      format_result(nil, 'Usuario eliminado correctamente!', users_query)
+      format_result(nil, 'UserDeleted', users_query)
     end
 
     private

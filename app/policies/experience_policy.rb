@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Experience policy
 class ExperiencePolicy < ApplicationPolicy
   def create?
     !admin

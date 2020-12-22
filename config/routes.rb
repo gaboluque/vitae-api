@@ -4,18 +4,15 @@
 Rails.application.routes.draw do
   scope module: :api, defaults: { format: :json } do
     scope module: :v1, constraints: ApiVersion.new('v1', true) do
-      devise_for :users, skip: %i[sessions registrations]
-
+      devise_for :users, skip: %i[sessions registrations confirmations passwords]
       as :user do
-        post 'log-in', to: 'sessions#create'
+        post 'auth/log-in', to: 'auth/sessions#create'
+        post 'auth/verify-token', to: 'auth/sessions#verify_token'
+        post 'auth/sign-up', to: 'auth/registrations#create'
       end
-
-      # Users
-      get 'users', to: 'users#index'
-      post 'users', to: 'users#create'
-      get 'users/:id', to: 'users#edit'
-      put 'users/:id', to: 'users#update'
-      delete 'users/:id', to: 'users#destroy'
+      
+      resources :users
+      resources :experiences
     end
   end
 end

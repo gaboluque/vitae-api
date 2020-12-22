@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore IDE directories
+/.idea
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -25,3 +28,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Env variables
+.env

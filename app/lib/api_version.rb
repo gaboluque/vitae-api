@@ -4,7 +4,7 @@
 class ApiVersion
   attr_reader :version, :default
 
-  def initialize(version, default = false)
+  def initialize(version, default = false) # rubocop:disable Style/OptionalBooleanParameter
     @version = version
     @default = default
   end

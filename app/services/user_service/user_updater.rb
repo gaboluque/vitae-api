@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 module UserService
+  # User updater service
   class UserUpdater < ApplicationService
     attr_reader :user, :user_params, :change_password
 
     def initialize(user, user_params)
+      super()
       @user = user
       @user_params = user_params
     end
@@ -20,16 +22,11 @@ module UserService
     private
 
     def verify_business_rules
-      if @user[:email] != @user_params[:email]
-        validate_element(!User.exists?(email: @user_params[:email]),
-                         'Ya existe un usuario con este correo!',
-                         :bool)
-      end
-      if @user.hub[:tag] != @user_params[:hub_attributes][:tag]
-        validate_element(!Hub.exists?(tag: @user_params[:hub_attributes][:tag]),
-                         'Ya existe un usuario con ese tag!',
-                         :bool)
-      end
+      return unless @user[:email] != @user_params[:email]
+
+      validate_element(!User.exists?(email: @user_params[:email]),
+                       'UserExists',
+                       :bool)
     end
 
     def users_query

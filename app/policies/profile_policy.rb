@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# ProfilePolicy
 class ProfilePolicy < ApplicationPolicy
   def update?
     can_update

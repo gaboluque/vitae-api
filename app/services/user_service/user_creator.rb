@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 module UserService
+  # User creator service
   class UserCreator < ApplicationService
     attr_reader :user_params
 
     def initialize(user_params)
+      super()
       @user_params = user_params
     end
 
@@ -12,22 +14,16 @@ module UserService
       ActiveRecord::Base.transaction do
         verify_business_rules
         @user_params[:admin] = false
-        @user_params[:hub_attributes][:kind] = 'hub_a'
-        @user_params[:hub_attributes][:color_a] = '#FFFFFF'
-        @user_params[:hub_attributes][:color_b] = '#000000'
         User.create!(@user_params)
       end
-      format_result(nil, 'Usuario creado correctamente', users_query)
+      format_result(nil, 'UserCreated', users_query)
     end
 
     private
 
     def verify_business_rules
       validate_element(!User.exists?(email: @user_params[:email]),
-                       'Ya existe un usuario con este correo!',
-                       :bool)
-      validate_element(!Hub.exists?(tag: @user_params[:hub_attributes][:tag]),
-                       'Ya existe un usuario con ese tag!',
+                       'UserEmailExists',
                        :bool)
     end
 

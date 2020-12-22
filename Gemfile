@@ -26,6 +26,7 @@ gem 'devise-jwt', '~> 0.7.0'
 gem 'dotenv-rails', '~> 2.7'
 
 gem 'rubocop', require: false
+gem 'rubocop-rails', require: false
 
 # Pundit - Authorization gem
 gem 'pundit', '~> 2.0', '>= 2.0.1'

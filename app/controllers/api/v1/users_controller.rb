@@ -2,9 +2,10 @@
 
 module Api
   module V1
+    # Users controller
     class UsersController < ApplicationController
       before_action :authenticate_user!, except: %i[create]
-      before_action :set_user, only: %i[show update edit destroy]
+      before_action :set_user, only: %i[update edit destroy]
 
       def index
         authorize User
