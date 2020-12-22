@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the api application created for the Vitae CV project.
 
-Things you may want to cover:
+It's meant to work with the vitae-client application as a frontend service
 
-* Ruby version
 
-* System dependencies
+## Features
+- User authorization and authentication
+- Creation of experiences
+- Public CV page for sharing
 
-* Configuration
+## Technologies
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- [RubyOnRails](https://rubyonrails.org/)
+- [Devise](https://github.com/heartcombo/devise) 
+- [PostgreSQL](https://www.postgresql.org/) 
