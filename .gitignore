@@ -30,4 +30,4 @@
 /config/master.key
 
 # Env variables
-.env
+#.env

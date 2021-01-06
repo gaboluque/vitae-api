@@ -7,6 +7,6 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def permitted_attributes_for_update
-    %i[name phone location gender description avatar]
+    %i[name phone location gender description birth_date avatar]
   end
 end

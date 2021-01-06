@@ -11,7 +11,7 @@ module ExperienceService
     end
 
     def execute
-      format_result(@user.experiences, nil)
+      @user.experiences
     end
   end
 end

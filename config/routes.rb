@@ -10,9 +10,13 @@ Rails.application.routes.draw do
         post 'auth/verify-token', to: 'auth/sessions#verify_token'
         post 'auth/sign-up', to: 'auth/registrations#create'
       end
-      
+
       resources :users
       resources :experiences
+
+      # Profile
+      get 'profile', to: 'profiles#show'
+      put 'profile', to: 'profiles#update'
     end
   end
 end

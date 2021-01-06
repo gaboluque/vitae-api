@@ -7,7 +7,8 @@ module Api::V1
     before_action :set_experience, only: %i[show update destroy]
 
     def index
-      @result = ExperienceService::ExperienceFetcher.execute(current_user)
+      experiences = ExperienceService::ExperienceFetcher.execute(current_user)
+      @result = format_result(experiences, nil)
     end
 
     def show
