@@ -3,11 +3,10 @@
 module ExperienceService
   # Experience destroyer service
   class ExperienceDestroyer < ApplicationService
-    attr_reader :user, :experience
+    attr_reader :experience
 
-    def initialize(user, experience)
+    def initialize(experience)
       super()
-      @user = user
       @experience = experience
     end
 
@@ -15,13 +14,6 @@ module ExperienceService
       ActiveRecord::Base.transaction do
         @experience.destroy!
       end
-      format_result(nil, 'ExperienceDeleted', experiences_query)
-    end
-
-    private
-
-    def experiences_query
-      -> { ExperienceService::ExperienceFetcher.execute(@user)[:entity] }
     end
   end
 end

@@ -18,4 +18,8 @@ class Profile < ApplicationRecord
 
     ((Time.zone.now - self[:birth_date]) / 1.year.seconds).floor
   end
+
+  def self.gender_select
+    genders.map { |gender| { value: gender[1], label: gender[0] } }
+  end
 end

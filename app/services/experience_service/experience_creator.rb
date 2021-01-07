@@ -19,7 +19,6 @@ module ExperienceService
         @experience.user_id = @user.id
         @experience.save!
       end
-      format_result(nil, 'ExperienceCreated', experiences_query)
     end
 
     private
@@ -31,10 +30,6 @@ module ExperienceService
 
       @experience_params[:end_date] =
         "#{@experience_params[:end_year]}-#{@experience_params[:end_month]}-01"
-    end
-
-    def experiences_query
-      -> { ExperienceService::ExperienceFetcher.execute(@user)[:entity] }
     end
   end
 end

@@ -17,6 +17,10 @@ Rails.application.routes.draw do
       # Profile
       get 'profile', to: 'profiles#show'
       put 'profile', to: 'profiles#update'
+
+      # Helpers
+      get 'labels/:kind', to: 'helpers#labels'
+      post 'auth/verify-token', to: 'helpers#verify_token'
     end
   end
 end

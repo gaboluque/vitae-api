@@ -15,7 +15,6 @@ module ProfileService
       ActiveRecord::Base.transaction do
         @user.profile.update!(@profile_params)
       end
-      format_result(nil, 'ProfileUpdated')
     end
   end
 end

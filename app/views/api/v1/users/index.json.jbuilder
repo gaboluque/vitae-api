@@ -1,4 +1,3 @@
-json.success @result[:success]
-json.user_list do
-  json.partial! 'api/v1/users/list', users: @result[:entity]
+json.userList do
+  json.partial! 'api/v1/users/list', users: @result[:data]
 end

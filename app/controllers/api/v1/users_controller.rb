@@ -5,29 +5,28 @@ module Api
     # Users controller
     class UsersController < ApplicationController
       before_action :authenticate_user!, except: %i[create]
-      before_action :set_user, only: %i[update edit destroy]
+      before_action :set_user, only: %i[update edit destroy show]
 
       def index
         authorize User
-        @result = UserService::UserFetcher.execute
+        users = User.includes(:profile).where.not(admin: true)
+        @result = format_result(data: users)
       end
 
-      def create
-        @result = UserService::UserCreator.execute(permitted_attributes(User))
+      def show
+        authorize User
       end
 
       def update
         authorize @user
         @result = UserService::UserUpdater.execute(@user, permitted_attributes(User))
+        @result = format_result(msg: 'UserUpdated')
       end
 
       def destroy
         authorize @user
-        @result = UserService::UserDestroyer.execute(@user)
-      end
-
-      def edit
-        authorize @user
+        UserService::UserDestroyer.execute(@user)
+        @result = format_result(msg: 'UserDeleted')
       end
 
       private

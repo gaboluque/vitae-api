@@ -10,10 +10,6 @@ class UserPolicy < ApplicationPolicy
     admin
   end
 
-  def edit?
-    admin
-  end
-
   def destroy?
     admin
   end
@@ -30,7 +26,7 @@ class UserPolicy < ApplicationPolicy
 
   def permitted_attributes_for_update
     [:email, :password, :password_confirmation, :admin, {
-      profile_attributes: %i[id name phone location gender description birth_date avatar], hub_attributes: %i[id tag]
+      profile_attributes: %i[name phone location gender description birth_date avatar]
     }]
   end
 end

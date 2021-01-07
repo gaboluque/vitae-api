@@ -14,9 +14,9 @@ module UserService
     def execute
       ActiveRecord::Base.transaction do
         verify_business_rules
+        @user_params[:profile_attributes][:avatar] = updated_avatar
         @user.update!(@user_params)
       end
-      format_result(nil, 'Usuario editado satisfactoriamente', users_query)
     end
 
     private
@@ -29,8 +29,8 @@ module UserService
                        :bool)
     end
 
-    def users_query
-      -> { UserService::UserFetcher.execute[:entity] }
+    def updated_avatar
+      @user_params[:profile_attributes][:avatar] ||= @user.profile.avatar.blob
     end
   end
 end

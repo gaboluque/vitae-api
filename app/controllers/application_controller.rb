@@ -6,14 +6,11 @@ class ApplicationController < ActionController::API
   include DeviseResponses
   include HandleError::ErrorHandler
 
-  def format_result(entity, msg = nil, extra = nil, complement = nil)
+  def format_result(data: nil, msg: nil)
     result = {}
-    result[:success] = true
     result[:message] = msg
     result[:type] = 'success'
-    result[:extra] = extra.nil? ? {} : extra.call
-    result[:complement] = complement.nil? ? {} : complement.call
-    result[:entity] = entity
+    result[:data] = data
     result
   end
 end

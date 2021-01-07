@@ -1,4 +1,3 @@
-json.success true
 json.auth do
   json.logged true
   json.jwt_token @token

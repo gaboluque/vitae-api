@@ -52,7 +52,7 @@ module HandleError
     end
 
     def user_not_authorized
-      respond('UserNotAuthorized', 401)
+      respond('Unauthorized', 401)
     end
 
     def route_not_found

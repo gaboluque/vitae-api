@@ -7,8 +7,7 @@ module Api::V1
     before_action :set_experience, only: %i[show update destroy]
 
     def index
-      experiences = ExperienceService::ExperienceFetcher.execute(current_user)
-      @result = format_result(experiences, nil)
+      @result = format_result(data: current_user.experiences)
     end
 
     def show
@@ -16,17 +15,21 @@ module Api::V1
 
     def create
       authorize Experience
-      @result = ExperienceService::ExperienceCreator.execute(current_user, permitted_params)
+      ExperienceService::ExperienceCreator.execute(current_user, permitted_params)
+      @result = format_result(msg: 'ExperienceCreated')
+      render status: :created
     end
 
     def update
       authorize @experience
-      @result = ExperienceService::ExperienceUpdater.execute(current_user, @experience, permitted_params)
+      ExperienceService::ExperienceUpdater.execute(@experience, permitted_params)
+      @result = format_result(msg: 'ExperienceUpdated')
     end
 
     def destroy
       authorize @experience
-      @result = ExperienceService::ExperienceDestroyer.execute(current_user, @experience)
+      ExperienceService::ExperienceDestroyer.execute(@experience)
+      @result = format_result(msg: 'ExperienceDeleted')
     end
 
     private
